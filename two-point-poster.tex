@@ -1,13 +1,3 @@
-%%
-%% This is file `tikzposter-template.tex',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% tikzposter.dtx  (with options: `tikzposter-template.tex')
-%% 
-%% This is a generated file.
-%% 
 %% Copyright (C) 2014 by Pascal Richter, Elena Botoeva, Richard Barnard, and Dirk Surmann
 %% 
 %% This file may be distributed and/or modified under the
@@ -21,8 +11,7 @@
 %% LaTeX version 2013/12/01 or later.
 %% 
 
-
-\documentclass{tikzposter} %Options for format can be included here
+\documentclass[]{tikzposter} %Options for format can be included here
 
 \usepackage{epsfig}
 \usepackage{amsmath}
@@ -58,7 +47,30 @@
 \titlegraphic{\includegraphics[scale=2.5]{images/uob-logo-grey-transparent}}
 
  %Choose Layout
-\usetheme{Default}
+\usetheme{Simple}
+
+\settitle{
+% To do: fix the hideous colour scheme
+\centering
+\vspace{30pt}
+\vbox{
+	\resizebox{\linewidth-100pt}{!}{\bfseries \@title}
+	\vspace{20pt}
+	\begin{minipage}[c]{0.5\linewidth}
+		\centering
+		\huge
+		\@author
+		
+		\vspace{15pt}
+		\Large
+		\@institute
+	\end{minipage}
+	\begin{minipage}[c]{0.4\linewidth}
+		\centering
+		\@titlegraphic
+	\end{minipage}
+}	
+}
 
 \begin{document}
 
@@ -66,22 +78,54 @@
 \maketitle
 
 \block{Abstract}{
-Given an open set $A \subseteq \R^d$,
-place $n$ iid points distributed according to
-a probability distribution $\mu$ on $A$.
-At each point, place a ball of radius $r$.
-The union of these balls, $Z(n,r)$, is called the \emph{Boolean model},
-or the \emph{continuum percolation model}.
+% A bit too long!
+The \emph{random blob} model, or the Boolean model, places balls of radius $r$ centred at the points
+of a homogeneous Poisson point process $\mathcal{P}$
+in a set $A$
+with an intensity $\mu$.
+It is closely related to the random geometric graph,
+in which two points of $\mathcal{P}$
+are joined with an edge if the distance between them
+is less than $2r$.
+If the relationship between the number of balls and the radii
+is such that the average degree of a point,
+which is proportional to $\mu r^d$,
+converges to a constant
+then the model can be thought of as a form of percolation.
 
-When $A$ is bounded, we can ask a whole range of interesting geometric and topological questions: Is a given $B \subseteq A$ completely covered by $Z(n,r)$?
-Is $Z(n,r)$ connected? Is it simply connected?
-Given two points on the boundary of $A$, is there a path in $Z(n,r)$ connecting them?
+Indeed, if $A = \mathbb{R}^d$ or a half-space and $r=1$,
+the random blob model is often called \emph{continuum percolation},
+parameterised by the intensity.
+Many well-known properties of discrete percolation are known
+to also hold for continuum percolation,
+such as existence of a non-trivial critical intensity
+and the existence of a unique unbounded component.
 
-We can look at these events as $n \to \infty$
-via \emph{event thresholds},
-the smallest value of $r$ such that a given event occurs.
+We will discuss recent work
+on the two-point connection function
+for the Boolean model.
+%
+If $A$ is a bounded subset of $\mathbb{R}^d$
+with a sufficiently smooth boundary,
+then given distinct $x, y \in \partial A$,
+we prove a limit theorem for the probability
+that $x$ and $y$ are joined by a path in the Boolean model.
+In particular,
+if $\theta_A(\lambda)$ is the probability that the
+origin is contained in an unbounded component
+in continuum percolation with intensity $\lambda$ in $A$,
+then we show
+that if $\lambda r^d \to \mu$
+as $\lambda \to \infty$,
+then the probability that $x$ and $y$ lie in the same component
+converges to $\theta_{\mathbb{H}}(\lambda)^2$.
 
-Based on work by myself, Mathew Penrose and Xiaochuan Yang.
+Our proof involves a renormalisation argument
+relating certain events for the Boolean model in $A$
+explicitly to corresponding events for continuum percolation
+in $\mathbb{H}$.
+
+Based on joint work with Mathew Penrose.
 }
  \begin{columns}
 
@@ -104,7 +148,7 @@ Based on work by myself, Mathew Penrose and Xiaochuan Yang.
 
 \begin{subcolumns}
 \subcolumn{0.5}
-\block{Coverage events}{
+\block{Connectivity events}{
 	Let $B \subseteq A$.
 	Given $\mathcal{X}_n$,
 	the \emph{coverage threshold}
@@ -148,49 +192,8 @@ $x$ and $y$ are connected via the giant component.
 \includegraphics[width=0.23\textwidth]{images/boolean-example}
 The Boolean model inside a unit disc
 }
-\block{Boundary effects}{
-	Suppose $B = A$.
-	There are two cases:
-	(i) $A$ has a smooth boundary, and
-	(ii) $A$ is a convex polytope
-	with finitely many faces.
-	
-	In case (i), we have the strong law
-	\[
-		\frac{n \theta_d R_n^d}{\log n} \to 2 - 2/d
-	\]
-	almost surely as $n \to \infty$.
-	For $d \geq 3$, the limit is greater than 1:
-	the furthest point in $\overline{A}$ from $\mathcal{X}_n$
-	is close to the boundary $\partial A$.
-	
-	In case (ii), the strong law \cite{euclidean-coverage}
-	 depends on the geometry of $A$.
-	We will state the strong law only in the $d = 3$ case:
-	if $E$ is the set of edges of the polytope,
-	for $e \in E$ let $\alpha_e$ be the angle between the two faces meeting at $e$.
-	Let $\alpha_{\mathrm{min}} := \min_{e \in E} \alpha_e$
-	be the sharpest angle.
-	Then the strong law is
-	\[
-		\frac{n R_n^3}{\log n} \to \frac{1}{
-			\min( \pi, 2 \alpha_{\mathrm{min}} )
-		}
-	\]
-	almost surely as $n \to \infty$.
-	
-	If $\alpha_{\mathrm{min}} \geq \pi/2$,
-	then this is the same limit as in case (i).
-	
-	There is an interesting phase transition:
-	if $\alpha_{\mathrm{min}} > \pi/2$,
-	then the furthest point from $\mathcal{X}_n$
-	is (asymptotically) uniformly distributed on $\partial A$.
-	If $\alpha_{\mathrm{min}} < \pi/2$,
-	then the furthest point is (again, in the limit) uniformly distributed
-	on all edges $e \in E$ for which $\alpha_e = \alpha_{\mathrm{min}}$.
-	
-	A similar phase transition exists for all $d \geq 3$.
+\block{Does the boundary matter?}{
+Yes
 }
 \end{subcolumns}
 
@@ -204,19 +207,7 @@ The Boolean model inside a unit disc
 
 \block{Topological thresholds}
 {
-	There are other events we can look at,
-	such as the topology of $Z(n,r)$.
-	Define the \emph{no-holes threshold}
-	\[
-		V_n := \sup\{ r > 0 : \R^d \setminus Z(n,r) \text{ is not connected} \}.
-	\]
-	If $A$ is simply connected with a sufficiently smooth boundary,
-	or is a convex finite polytope, then $V_n \leq R_n$
-	provided $R_n < \eps$ for some constant $\eps > 0$.
-	
-	In upcoming work we show that the no-holes threshold
-	follows the same strong law (with the same limits)
-	as the coverage threshold.
+Brief mention of some recent stuff.
 }
 
 \block{Percolation-type scaling}{
