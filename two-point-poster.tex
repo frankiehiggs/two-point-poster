@@ -52,7 +52,7 @@
 \def\D{\mathbb{D}}
 
  % Title, Author, Institute
-\title{Boundary effects in continuum percolation}
+\title{Connecting two points via random blobs}
 \author{Frankie Higgs, fh350@bath.ac.uk}
 \institute{Department of Mathematical Sciences, University of Bath}
 \titlegraphic{\includegraphics[scale=2.5]{images/uob-logo-grey-transparent}}
@@ -129,11 +129,17 @@ Based on work by myself, Mathew Penrose and Xiaochuan Yang.
 }
 \block{}{
 \centering
-\includegraphics[width=0.20565\textwidth]{images/tetra}\\
-Tetrahedron, with $\mathcal{X}_n$ in blue,
-and the furthest point from $\mathcal{X}_n$ marked in red.\vspace{20pt}
-\includegraphics[width=0.20565\textwidth]{images/icosa}\\
-Icosahedron
+\includegraphics[width=1.0\linewidth, trim=130 80 115 85, clip]{connection-diagram/neither_percolates}
+When $\lambda > \lambda_c$,
+there will be a giant component.
+Above,
+neither $x$ nor $y$
+is contained in the giant component.
+\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/x_percolates}
+$x$ is in the giant component,
+but $y$ is not.
+\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/simple-path}
+$x$ and $y$ are connected via the giant component.
 }
 
 \subcolumn{0.5}
