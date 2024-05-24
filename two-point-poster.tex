@@ -42,8 +42,8 @@
 
  % Title, Author, Institute
 \title{Connecting two points via random blobs}
-\author{Frankie Higgs, fh350@bath.ac.uk}
-\institute{Department of Mathematical Sciences, University of Bath}
+\author{Frankie Higgs, \texttt{fh350@bath.ac.uk}}
+\institute{\Large Department of Mathematical Sciences, University of Bath\\\LARGE Based on joint work with Mathew Penrose}
 \titlegraphic{\includegraphics[scale=2.5]{images/uob-logo-grey-transparent}}
 
  %Choose Layout
@@ -62,13 +62,14 @@
 		\@author
 		
 		\vspace{15pt}
-		\Large
+		%\Large
 		\@institute
 	\end{minipage}
 	\begin{minipage}[c]{0.4\linewidth}
 		\centering
 		\@titlegraphic
 	\end{minipage}
+	\vspace{-80pt}
 }	
 }
 
@@ -77,62 +78,86 @@
  % Title block with title, author, logo, etc.
 \maketitle
 
-\block{Abstract}{
-% A bit too long!
-The \emph{random blob} model, or the Boolean model, places balls of radius $r$ centred at the points
-of a homogeneous Poisson point process $\mathcal{P}$
-in a set $A$
-with an intensity $\mu$.
-It is closely related to the random geometric graph,
-in which two points of $\mathcal{P}$
-are joined with an edge if the distance between them
-is less than $2r$.
-If the relationship between the number of balls and the radii
-is such that the average degree of a point,
-which is proportional to $\mu r^d$,
-converges to a constant
-then the model can be thought of as a form of percolation.
-
-Indeed, if $A = \mathbb{R}^d$ or a half-space and $r=1$,
-the random blob model is often called \emph{continuum percolation},
-parameterised by the intensity.
-Many well-known properties of discrete percolation are known
-to also hold for continuum percolation,
-such as existence of a non-trivial critical intensity
-and the existence of a unique unbounded component.
-
-We will discuss recent work
-on the two-point connection function
-for the Boolean model.
+%\block{Abstract}{
+%% A bit too long!
+%% Do we even need an abstract at all?
+%The \emph{random blob} model, or the Boolean model, places balls of radius $r$ centred at the points
+%of a homogeneous Poisson point process $\mathcal{P}$
+%in a set $A$
+%with an intensity $\mu$.
+%It is closely related to the random geometric graph,
+%in which two points of $\mathcal{P}$
+%are joined with an edge if the distance between them
+%is less than $2r$.
+%If the relationship between the number of balls and the radii
+%is such that the average degree of a point,
+%which is proportional to $\mu r^d$,
+%converges to a constant
+%then the model can be thought of as a form of percolation.
 %
-If $A$ is a bounded subset of $\mathbb{R}^d$
-with a sufficiently smooth boundary,
-then given distinct $x, y \in \partial A$,
-we prove a limit theorem for the probability
-that $x$ and $y$ are joined by a path in the Boolean model.
-In particular,
-if $\theta_A(\lambda)$ is the probability that the
-origin is contained in an unbounded component
-in continuum percolation with intensity $\lambda$ in $A$,
-then we show
-that if $\lambda r^d \to \mu$
-as $\lambda \to \infty$,
-then the probability that $x$ and $y$ lie in the same component
-converges to $\theta_{\mathbb{H}}(\lambda)^2$.
+%Indeed, if $A = \mathbb{R}^d$ or a half-space and $r=1$,
+%the random blob model is often called \emph{continuum percolation},
+%parameterised by the intensity.
+%Many well-known properties of discrete percolation are known
+%to also hold for continuum percolation,
+%such as existence of a non-trivial critical intensity
+%and the existence of a unique unbounded component.
+%
+%We will discuss recent work
+%on the two-point connection function
+%for the Boolean model.
+%%
+%If $A$ is a bounded subset of $\mathbb{R}^d$
+%with a sufficiently smooth boundary,
+%then given distinct $x, y \in \partial A$,
+%we prove a limit theorem for the probability
+%that $x$ and $y$ are joined by a path in the Boolean model.
+%In particular,
+%if $\theta_A(\lambda)$ is the probability that the
+%origin is contained in an unbounded component
+%in continuum percolation with intensity $\lambda$ in $A$,
+%then we show
+%that if $\lambda r^d \to \mu$
+%as $\lambda \to \infty$,
+%then the probability that $x$ and $y$ lie in the same component
+%converges to $\theta_{\mathbb{H}}(\mu)^2$.
+%
+%Our proof involves a renormalisation argument
+%relating certain events for the Boolean model in $A$
+%explicitly to corresponding events for continuum percolation
+%in $\mathbb{H}$.
+%}
 
-Our proof involves a renormalisation argument
-relating certain events for the Boolean model in $A$
-explicitly to corresponding events for continuum percolation
-in $\mathbb{H}$.
-
-Based on joint work with Mathew Penrose.
+\block{The ``random blob'' or Boolean model}{
+	\begin{minipage}[t]{0.75\linewidth}
+		Here we define the Boolean model,
+		maybe give some history.
+		
+		The \emph{random blob} model, or the Boolean model, places balls of radius $r$ centred at the points
+		of a homogeneous Poisson point process $\mathcal{P}$
+		in a set $A$
+		with an intensity $\mu$.
+		It is closely related to the random geometric graph,
+		in which two points of $\mathcal{P}$
+		are joined with an edge if the distance between them
+		is less than $2r$.
+		If the relationship between the number of balls and the radii
+		is such that the average degree of a point,
+		which is proportional to $\mu r^d$,
+		converges to a constant
+		then the model can be thought of as a form of percolation.
+	\end{minipage}
+	\begin{minipage}[t]{0.25\linewidth}
+		There will be a picture here illustrating the Boolean model
+	\end{minipage}
 }
+
  \begin{columns}
 
  % FIRST column
-\column{0.55}% Width set relative to text width
+\column{0.5}% Width set relative to text width
 
-\block{The Boolean model}{
+\block{Continuum percolation}{
 	Let $A \subseteq \R^d$ be open, and let $\mu$ be a probability measure on $A$.
 	Let $\mathcal{X} := (X_1, X_2, \dots)$ be a family of iid points distributed according to $\mu$,
 	and for $n \geq 1$ let $\mathcal{X}_n := (X_1, \dots, X_n)$.
@@ -147,7 +172,7 @@ Based on joint work with Mathew Penrose.
 }
 
 \begin{subcolumns}
-\subcolumn{0.5}
+\subcolumn{0.6}
 \block{Connectivity events}{
 	Let $B \subseteq A$.
 	Given $\mathcal{X}_n$,
@@ -186,10 +211,10 @@ but $y$ is not.
 $x$ and $y$ are connected via the giant component.
 }
 
-\subcolumn{0.5}
+\subcolumn{0.4}
 \block{}{
 \centering
-\includegraphics[width=0.23\textwidth]{images/boolean-example}
+\includegraphics[width=\linewidth]{images/boolean-example}
 The Boolean model inside a unit disc
 }
 \block{Does the boundary matter?}{
@@ -203,45 +228,31 @@ Yes
 }
 
  % SECOND column
-\column{0.45}
+\column{0.50}
 
-\block{Topological thresholds}
+\block{Renormalisation}{
+	To construct long-range connections in the Boolean model,
+	we define a finite grid with spacing $M r_n$ (for some large constant $M$)
+	and construct a \emph{site percolation} model on this grid
+	using the Boolean model.
+}
+\block{Events with larger blobs}
 {
-Brief mention of some recent stuff.
+Some events in the $n r^d \approx \log n$ regime.
+
+We can include some recent stuff on the ``homological thresholds.''
 }
 
 \block{Percolation-type scaling}{
-	The coverage and no-holes events
-	only have non-trivial limiting probabilities
-	when $n r^d \approx \log n$ as $n \to \infty$.
-	But we can consider other scaling regimes.
-	
-	Let $\lambda > 0$ be a constant,
-	and keep $n r^d = \lambda$ constant as $n \to \infty$.
-	For a given $x \in A$,
-	we can calculate
-	\begin{align*}
-		\P( x \not\in Z(n,r) )
-		&= \P( X_i \not\in B(x,r) \text{ for all } i \leq n )\\
-		&= [ 1 - \mathrm{Vol}( B(x,r) \cap A ) ]^n\\
-		&\sim \exp\left( -\theta_d \lambda \right)
-	\end{align*}
-	for large $n$.
-	
-	In this scaling regime,
-	we are interested in properties of $Z(n,r)$
-	such as its connectivity,
-	the size of the largest cluster,
-	and the probability of crossing events.
 }
 
 \begin{subcolumns}
 \subcolumn{0.36}
 \block{}{
 \centering
-\includegraphics[width=0.12\textwidth]{images/percolation1-0}
-\includegraphics[width=0.12\textwidth]{images/percolation1-1}
-\includegraphics[width=0.12\textwidth]{images/percolation1-2}
+\includegraphics[width=\linewidth]{images/percolation1-0}
+\includegraphics[width=\linewidth]{images/percolation1-1}
+\includegraphics[width=\linewidth]{images/percolation1-2}
 }
 \subcolumn{0.64}
 \block{}{
@@ -296,19 +307,15 @@ Brief mention of some recent stuff.
 \begin{thebibliography}{1}
 
 \bibitem{hall85}
-Peter Hall.
+Peter Hall, 1985.
 \newblock Distribution of size, structure and number of vacant regions in a high-intensity mosaic.
-\newblock \textit{Z. Wahrscheinlichkeitstheorie verw Gebiete}, 1985, volume 70, pages 237--261
+%\newblock \textit{Z. Wahrscheinlichkeitstheorie verw Gebiete}, 1985, volume 70, pages 237--261
+% I don't feel we need the full citation; author, title and year should be enough.
 
 \bibitem{janson86}
-Svante Janson.
+Svante Janson, 1986.
 \newblock Random coverings in several dimensions.
-\newblock \textit{Acta Mathematica}, 1986, volume 156, pages 83--118
-
-\bibitem{euclidean-coverage}
-Mathew D. Penrose.
-\newblock Random Euclidean coverage from within.
-\newblock \textit{Probability Theory and Related Fields}, 2023, volume 185, pages 747--814
+%\newblock \textit{Acta Mathematica}, 1986, volume 156, pages 83--118
 
 \end{thebibliography}
 }
