@@ -41,7 +41,7 @@
 \def\D{\mathbb{D}}
 
  % Title, Author, Institute
-\title{Connecting two points via random blobs}
+\title{Connecting distant points via random blobs}
 \author{Frankie Higgs, \texttt{fh350@bath.ac.uk}}
 \institute{\Large Department of Mathematical Sciences, University of Bath\\\LARGE Based on joint work with Mathew Penrose}
 \titlegraphic{\includegraphics[scale=2.5]{images/uob-logo-grey-transparent}}
@@ -129,7 +129,10 @@
 %}
 
 \block{The ``random blob'' or Boolean model}{
-	\begin{minipage}[t]{0.75\linewidth}
+	\begin{minipage}[c]{0.25\linewidth}
+		\includegraphics[width=\linewidth, trim=0 0 0 0, clip]{connection-diagram/boolean}
+	\end{minipage}
+	\begin{minipage}[c]{0.75\linewidth}
 		Here we define the Boolean model,
 		maybe give some history.
 		
@@ -146,9 +149,6 @@
 		which is proportional to $\mu r^d$,
 		converges to a constant
 		then the model can be thought of as a form of percolation.
-	\end{minipage}
-	\begin{minipage}[t]{0.25\linewidth}
-		There will be a picture here illustrating the Boolean model
 	\end{minipage}
 }
 
@@ -212,13 +212,9 @@ $x$ and $y$ are connected via the giant component.
 }
 
 \subcolumn{0.4}
-\block{}{
-\centering
-\includegraphics[width=\linewidth]{images/boolean-example}
-The Boolean model inside a unit disc
-}
+
 \block{Does the boundary matter?}{
-Yes
+Yes.
 }
 \end{subcolumns}
 
@@ -242,64 +238,6 @@ Some events in the $n r^d \approx \log n$ regime.
 
 We can include some recent stuff on the ``homological thresholds.''
 }
-
-\block{Percolation-type scaling}{
-}
-
-\begin{subcolumns}
-\subcolumn{0.36}
-\block{}{
-\centering
-\includegraphics[width=\linewidth]{images/percolation1-0}
-\includegraphics[width=\linewidth]{images/percolation1-1}
-\includegraphics[width=\linewidth]{images/percolation1-2}
-}
-\subcolumn{0.64}
-\block{}{
-	Let $x, y \in \partial A$,
-	and write $x \leftrightarrow y$
-	if there exists a path from $x$ to $y$
-	inside $Z(n,r)$.
-	
-	Let $\theta_{\mathbb{H}}(\lambda)$
-	be the percolation probability
-	at intensity $\lambda$
-	in the half-space $\mathbb{H} := [0,\infty) \times \R^{d-1}$,
-	i.e.\ if $\mathcal{P}_\lambda$
-	is a homogeneous Poisson point process of intensity $\lambda$ in $\mathbb{H}$,
-	and $Z(\lambda) := \bigcup_{x \in \mathcal{P}_\lambda} B(x,1)$,
-	then
-	$\theta_{\mathbb{H}}(\lambda) := \P[ 0 \leftrightarrow \infty \text{ in } Z(\lambda) ]$.
-	
-	In upcoming work, we prove that if $\partial A$ is sufficiently smooth,
-	then
-	$
-		\P( x \leftrightarrow y ) \to \theta_{\mathbb{H}}(\lambda)^2
-	$
-	as $n \to \infty$ with $nr^d = \lambda$.
-}
-
-\block{}{
-	The above result shows that,
-	with high probability,
-	long-range connections
-	do not exist if $\lambda \leq \lambda_c$,
-	where $\lambda_c$ is the critical intensity for half-space percolation,
-	and do exist if $\lambda > \lambda_c$.
-	
-	We expect other percolation-type results
-	to also hold for the Boolean model in this scaling regime,
-	such as the proportion of the boundary connected to the largest component
-	converging to $\theta_{\mathbb{H}}(\lambda)$.
-	
-	Left:
-	this regime
-	using the same sample of $\mathcal{X}_n$
-	with $\lambda = 1.0$, $1.1$ and $1.2$
-	from top to bottom.
-	Clusters are coloured according to their size.
-}
-\end{subcolumns}
 
 \block{}{
 \vspace{-40pt}
