@@ -17,9 +17,14 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{multicol}
+\usepackage{caption}
+\usepackage{amsthm}
+
+\newtheorem*{theorem*}{Theorem}
 
 \def\cparam{\mathbf{c}}
 \def\R{\mathbb{R}}
+\def\H{\mathbb{H}}
 \def\N{\mathbb{N}}
 \def\Z{\mathbb{Z}}
 \def\Q{\mathbb{Q}}
@@ -50,7 +55,6 @@
 \usetheme{Simple}
 
 \settitle{
-% To do: fix the hideous colour scheme
 \centering
 \vspace{30pt}
 \vbox{
@@ -78,190 +82,227 @@
  % Title block with title, author, logo, etc.
 \maketitle
 
-%\block{Abstract}{
-%% A bit too long!
-%% Do we even need an abstract at all?
-%The \emph{random blob} model, or the Boolean model, places balls of radius $r$ centred at the points
-%of a homogeneous Poisson point process $\mathcal{P}$
-%in a set $A$
-%with an intensity $\mu$.
-%It is closely related to the random geometric graph,
-%in which two points of $\mathcal{P}$
-%are joined with an edge if the distance between them
-%is less than $2r$.
-%If the relationship between the number of balls and the radii
-%is such that the average degree of a point,
-%which is proportional to $\mu r^d$,
-%converges to a constant
-%then the model can be thought of as a form of percolation.
-%
-%Indeed, if $A = \mathbb{R}^d$ or a half-space and $r=1$,
-%the random blob model is often called \emph{continuum percolation},
-%parameterised by the intensity.
-%Many well-known properties of discrete percolation are known
-%to also hold for continuum percolation,
-%such as existence of a non-trivial critical intensity
-%and the existence of a unique unbounded component.
-%
-%We will discuss recent work
-%on the two-point connection function
-%for the Boolean model.
-%%
-%If $A$ is a bounded subset of $\mathbb{R}^d$
-%with a sufficiently smooth boundary,
-%then given distinct $x, y \in \partial A$,
-%we prove a limit theorem for the probability
-%that $x$ and $y$ are joined by a path in the Boolean model.
-%In particular,
-%if $\theta_A(\lambda)$ is the probability that the
-%origin is contained in an unbounded component
-%in continuum percolation with intensity $\lambda$ in $A$,
-%then we show
-%that if $\lambda r^d \to \mu$
-%as $\lambda \to \infty$,
-%then the probability that $x$ and $y$ lie in the same component
-%converges to $\theta_{\mathbb{H}}(\mu)^2$.
-%
-%Our proof involves a renormalisation argument
-%relating certain events for the Boolean model in $A$
-%explicitly to corresponding events for continuum percolation
-%in $\mathbb{H}$.
-%}
-
 \block{The ``random blob'' or Boolean model}{
 	\begin{minipage}[c]{0.25\linewidth}
 		\includegraphics[width=\linewidth, trim=0 0 0 0, clip]{connection-diagram/boolean}
 	\end{minipage}
 	\begin{minipage}[c]{0.75\linewidth}
-		Here we define the Boolean model,
-		maybe give some history.
+		The \emph{Boolean model} or \emph{random blob model}
+		is the union of balls of radius $r$
+		centred at the points of a point process $\mathcal{P}$ in a set $A$.
+		%
+		It is closely related to the \emph{random geometric graph},
+		in which the points of $\mathcal{P}$ are vertices
+		and edges join the pairs of points which are within distance $2r$.
 		
-		The \emph{random blob} model, or the Boolean model, places balls of radius $r$ centred at the points
-		of a homogeneous Poisson point process $\mathcal{P}$
-		in a set $A$
-		with an intensity $\mu$.
-		It is closely related to the random geometric graph,
-		in which two points of $\mathcal{P}$
-		are joined with an edge if the distance between them
-		is less than $2r$.
-		If the relationship between the number of balls and the radii
-		is such that the average degree of a point,
-		which is proportional to $\mu r^d$,
-		converges to a constant
-		then the model can be thought of as a form of percolation.
+		Suppose $A \subseteq \R^d$ is bounded,
+		and $\mathcal{P}$ is either $n$ iid points with uniform distribution on $A$,
+		or a homogeneous Poisson point process of intensity $n / |A|$.
+		Denote the Boolean model by $Z(n,r)$.
+		We often choose $r = r_n$ by setting the parameter $\Lambda_n = n r_n^d$,
+		as it is $\Lambda_n$ that determines many of the properties of $Z(n,r_n)$.
+		%
+		If $x \in A^\circ$ is at least distance $r_n$ from the boundary,
+		then the expected number of balls which contain $x$
+		is exactly proportional to $\Lambda_n$,
+		and the probability $x \in Z(n,r_n)$ depends on $\Lambda_n$,
+		for all $n$.
+		%
+		For a given sequence of $\Lambda_n$s, this makes the question of
+		\emph{limiting behaviour}
+		as $n \to \infty$ very interesting.
 	\end{minipage}
 }
 
- \begin{columns}
-
+\begin{columns}
  % FIRST column
 \column{0.5}% Width set relative to text width
-
 \block{Continuum percolation}{
-	Let $A \subseteq \R^d$ be open, and let $\mu$ be a probability measure on $A$.
-	Let $\mathcal{X} := (X_1, X_2, \dots)$ be a family of iid points distributed according to $\mu$,
-	and for $n \geq 1$ let $\mathcal{X}_n := (X_1, \dots, X_n)$.
-	For a given $r > 0$
-	let $Z(n,r) := \bigcup_{x \in \mathcal{X}_n} B(x,r)$,
-	where $B(x,r) := \{ y \in \R^d : \| x - y \| \leq r \}$.
-	We call $Z(n,r)$ the \emph{Boolean model}.
+	Suppose $A = \R^d$ or $\H$,
+	fix $r = 1$
+	and let $\mathcal{P}$ be a homogeneous Poisson process of intensity $\lambda > 0$.
+	%
+	In this case, the Boolean model is normally referred to as
+	\emph{continuum percolation}.
+	%
+	There are also many variants on continuum percolation,
+	particularly when the balls have random radii:
+	Meester and Roy's book Continuum Percolation
+	is a very good introduction.
 	
-	Suppose that $A$ is bounded,
-	and take $\mu$ to be normalised Lebesgue measure.
-	Without loss of generality also suppose that $A$ has Lebesgue measure 1.
+	As the name suggests,
+	continuum percolation has many behaviours similar to discrete percolation.
+	For example, we can define the \emph{percolation probability}
+	\[
+		\theta_A(\lambda) := \P_\lambda[\, 0 \text{ is in an unbounded component of $Z(n,r)$ }]
+	\]
+	and there is a non-trivial \emph{critical intensity}
+	\[
+		\lambda_c^A := \inf\{ \lambda > 0 : \theta_A(\lambda) > 0 \}.
+	\]
+	It is also known that $\lambda_c^{\H} = \lambda_c^{\R^d}$,
+	so we will can just write $\lambda_c$ to denote the critical intensity.
+	\begin{minipage}{\linewidth}
+	\centering
+	\begin{tikzfigure}
+		\includegraphics[width=0.32\linewidth, trim=0 0 0 0, clip]{connection-diagram/phase-0.35}\hfill
+		\includegraphics[width=0.32\linewidth, trim=0 0 0 0, clip]{connection-diagram/phase-0.36}\hfill
+		\includegraphics[width=0.32\linewidth, trim=0 0 0 0, clip]{connection-diagram/phase-0.37}
+	\end{tikzfigure}
+	Three realisations of the Boolean model in $\R^2$ corresponding to continuum percolation
+	with $\lambda = 0.35$, $\lambda = 0.36$ and $\lambda = 0.37$ respectively.
+	Each component is coloured according to its size (darker components are larger).
+	Numerical studies show $\lambda_c \approx 0.36$.
+	\end{minipage}
 }
 
+\block{Connection events}{
+	Suppose $A$ has a complicated geometry.
+	As long as the boundary is smooth,
+	the Boolean model near $\partial A$
+	should ``look like'' a rescaled verison of continuum percolation in $\H$.
+	Can we relate events inside $A$ to continuum percolation
+	events in the canonical sets $\R^d$ and $\H$?
+	
+	For example, suppose $x, y \in \overline{A}$.
+	Let $\{ x \leftrightarrow y \text{ in } Z(n,r) \}$ denote the event
+	that $x$ and $y$ are in the same connected component of the Boolean model.
+	
+	\begin{theorem*}[2024+, H. and Penrose]
+		Suppose $A \subseteq \R^d$ is open, connected and has a $C^2$ boundary.
+		Let $x, y$ be two distinct points on $\partial A$
+		and let $\lambda \in (0,\infty) \setminus \{ \lambda_c \}$.
+		If $\Lambda_n \to \lambda$ as $n \to \infty$,
+		then
+		\[
+			\lim_{n\to\infty} \P[ x \leftrightarrow y \text{ in } Z(n,r_n)]
+			=
+			\theta_{\H}(\lambda)^2.
+		\]
+	\end{theorem*}
+	\vspace{-2cm}
+}
 \begin{subcolumns}
-\subcolumn{0.6}
-\block{Connectivity events}{
-	Let $B \subseteq A$.
-	Given $\mathcal{X}_n$,
-	the \emph{coverage threshold}
-	for $B$ is defined as
-	\[
-		R_n := \inf\{ r > 0 : B \subseteq Z(n,r) \}.
-	\]
-	If $\overline{B} \subseteq A$,
-	then we can avoid boundary effects.
-	The behaviour of the coverage event in this case
-	has been understood since the mid 1980s
-	\cite{hall85} \cite{janson86}.
+
+\subcolumn{0.55}
+\block{Boundary effects}{
+	A similar result with $x,y$ chosen \emph{uniformly} in $[0,1]^2$
+	(so almost surely in the interior of the square)
+	was proven in 2022 by Penrose.
 	
-	In this case, we have the strong law \cite{euclidean-coverage}
-	\[
-		\frac{n \theta_d R_n^d}{\log n} \to 1
-	\]
-	almost surely as $n \to \infty$,
-	where $\theta_d$ is the volume of a unit ball.
-	Note that $n \theta_d R_n^d$ is the total volume of the balls $\{ B(x,R_n) : x \in \mathcal{X}_n \}$.
-	% whose union is $Z(n,r)$.
-}
-\block{}{
-\centering
-\includegraphics[width=1.0\linewidth, trim=130 80 115 85, clip]{connection-diagram/neither_percolates}
-When $\lambda > \lambda_c$,
-there will be a giant component.
-Above,
-neither $x$ nor $y$
-is contained in the giant component.
-\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/x_percolates}
-$x$ is in the giant component,
-but $y$ is not.
-\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/simple-path}
-$x$ and $y$ are connected via the giant component.
+	If $A$ is any polytope,
+	an analogous result to our recent theorem for points \emph{on the boundary}
+	should also	hold, but comparing to events from continuum percolation in \emph{cones}.
+	
+	To work near the boundary, we fit the part of $\partial A$ near $x$
+	between the two tangent sphere meeting the boundary at $x$.
+	Then we can relate events on one side of the tangent plane
+	to continuum percolation in $\H$.
 }
 
-\subcolumn{0.4}
-
-\block{Does the boundary matter?}{
-Yes.
+\subcolumn{0.45}
+\block{What about $\lambda_c$?}{
+	We required that $\lambda \not= \lambda_c$ for our result.
+	Why?
+	
+	It is unknown whether $\theta_{\R^d}(\lambda_c) = 0$
+	except when $d=2$ and $d \geq 11$.
+	If $\theta(\lambda_c) > 0$,
+	this would have a number of implications for percolation.
+	In particular, points which \emph{are} in the same component
+	may not be connected inside quite a large box.
+	So even if $x$ and $y$ are in huge components, they may not meet inside $A$.
 }
 \end{subcolumns}
 
-\block{}{
-	Similar results can be proved
-	when $A$ is a Riemannian manifold with boundary.
-}
 
  % SECOND column
 \column{0.50}
 
 \block{Renormalisation}{
 	To construct long-range connections in the Boolean model,
-	we define a finite grid with spacing $M r_n$ (for some large constant $M$)
+	we define a finite grid of balls with spacing $M r_n$ (for some large constant $M$)
 	and construct a \emph{site percolation} model on this grid
 	using the Boolean model.
-}
-\block{Events with larger blobs}
-{
-Some events in the $n r^d \approx \log n$ regime.
+	
+	A ``good'' vertex is the centre of a ball of radius $K r_n$
+	which intersects a unique large component of $Z(n,r_n)$
+	\emph{inside a box of side lengths $2dM$}
+	which also intersects all neighbouring balls in the grid.
+	
+	\begin{minipage}[c]{0.25\linewidth}
+		By choosing $K$, $M$ and other parameters appropriately,
+		we can ensure most balls in the grid are good.
+		Since all these events occur \emph{inside a box},
+		the dependence structure of the ``good events'' is simple.
+	\end{minipage}
+	\begin{minipage}[c]{0.75\linewidth}
+		\includegraphics[width=\linewidth, trim=0 0 0 0, clip]{connection-diagram/renormalisation}
+	\end{minipage}
 
-We can include some recent stuff on the ``homological thresholds.''
+	If you can prove that appropriate choices of $K$ and $M$ can be made
+	under the assumption that $\theta_\H(\lambda) > 0$
+	(rather than $\lambda > \lambda_c$),
+	then this implies $\theta_{\R^d}(\lambda_c) = 0$,
+	which is a major open problem in percolation.
+	Left here as an exercise for the reader...
 }
 
+\begin{subcolumns}
+\subcolumn{0.7}
 \block{}{
-\vspace{-40pt}
-\bibliographystyle{plain}
-\begin{thebibliography}{1}
-
-\bibitem{hall85}
-Peter Hall, 1985.
-\newblock Distribution of size, structure and number of vacant regions in a high-intensity mosaic.
-%\newblock \textit{Z. Wahrscheinlichkeitstheorie verw Gebiete}, 1985, volume 70, pages 237--261
-% I don't feel we need the full citation; author, title and year should be enough.
-
-\bibitem{janson86}
-Svante Janson, 1986.
-\newblock Random coverings in several dimensions.
-%\newblock \textit{Acta Mathematica}, 1986, volume 156, pages 83--118
-
-\end{thebibliography}
+	\centering
+	\begin{tikzpicture}
+	\node at (0,0) {\includegraphics[width=1.0\linewidth, trim=130 80 115 85, clip]{connection-diagram/neither_percolates}};
+	%\node at (-12,-6.5) {$x$};
+	%\node at ( 11, 6.75) {$y$};
+	\end{tikzpicture}
+	When $\lambda > \lambda_c$,
+	there will be a giant component.
+	Above,
+	neither $x$ nor $y$
+	is contained in the giant component.
+	\begin{tikzpicture}
+	\node at (0,0) {\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/x_percolates}};
+	%\node at (-13,-7.5) {$x$};
+	%\node at ( 13.5, 4.5) {$y$};
+	\end{tikzpicture}
+	$x$ is in the giant component,
+	but $y$ is not.
+	\begin{tikzpicture}
+	\node at (0,0) {\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/simple-path}};
+	%\node at (-13,-7.5) {$x$};
+	%\node at ( 13.5, 4.5) {$y$};
+	\end{tikzpicture}
+	$x$ and $y$ are connected via the giant component.
 }
 
+\subcolumn{0.3}
+\block{Extensions}{
+	There are some very easy extensions
+	which would follow directly from our methods.
+	For example,
+	the probability that a collection of $k$ distinct points
+	are all in a single component
+	should have a similar limit.
+	
+	A more interesting extension is the question of whether $x$ and $y$
+	are in the same component of $\overline{A} \setminus Z(n,r)$.
+	This \emph{vacancy percolation} is very interesting,
+	and quite challenging.
+	For example, there is no lower bound on the size of a component,
+	and the component can have much more complicated shapes
+	than those of $Z(n,r)$.
+}
+
+\end{subcolumns}
+\block{What else can $\Lambda_n$ do?}{
+	If $\Lambda_n = \Theta(\log n)$,
+	other events like coverage $\{A \subseteq Z(n,r_n)\}$,
+	connectivity of $Z(n,r_n)$
+	and interesting properties of the homology of $Z(n,r_n)$ become non-trivial.
+}
 \end{columns}
-
-
-
 \end{document}
 
 \endinput
