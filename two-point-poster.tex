@@ -118,7 +118,7 @@
  % FIRST column
 \column{0.5}% Width set relative to text width
 \block{Continuum percolation}{
-	Suppose $A = \R^d$ or $\H$,
+	Suppose $A = \R^d$ or $\H := (0,\infty) \times \R^{d-1}$,
 	fix $r = 1$
 	and let $\mathcal{P}$ be a homogeneous Poisson process of intensity $\lambda > 0$.
 	%
@@ -254,8 +254,8 @@
 	\centering
 	\begin{tikzpicture}
 	\node at (0,0) {\includegraphics[width=1.0\linewidth, trim=130 80 115 85, clip]{connection-diagram/neither_percolates}};
-	%\node at (-12,-6.5) {$x$};
-	%\node at ( 11, 6.75) {$y$};
+	\node at (-8.75,-4.25) {$x$};
+	\node at ( 9.0, 4.25) {$y$};
 	\end{tikzpicture}
 	When $\lambda > \lambda_c$,
 	there will be a giant component.
@@ -264,15 +264,15 @@
 	is contained in the giant component.
 	\begin{tikzpicture}
 	\node at (0,0) {\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/x_percolates}};
-	%\node at (-13,-7.5) {$x$};
-	%\node at ( 13.5, 4.5) {$y$};
+	\node at (-9.0,-5.0) {$x$};
+	\node at ( 9.25, 3.25) {$y$};
 	\end{tikzpicture}
 	$x$ is in the giant component,
 	but $y$ is not.
 	\begin{tikzpicture}
 	\node at (0,0) {\includegraphics[width=1.0\linewidth, trim=130 80 115 50, clip]{connection-diagram/simple-path}};
-	%\node at (-13,-7.5) {$x$};
-	%\node at ( 13.5, 4.5) {$y$};
+	\node at (-9.0,-5.0) {$x$};
+	\node at ( 9.25, 3.25) {$y$};
 	\end{tikzpicture}
 	$x$ and $y$ are connected via the giant component.
 }
