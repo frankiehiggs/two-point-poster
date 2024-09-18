@@ -96,9 +96,11 @@
 		and edges join the pairs of points which are within distance $2r$.
 		
 		Suppose $A \subseteq \R^d$ is bounded,
-		and $\mathcal{P}$ is either $n$ iid points with uniform distribution on $A$,
-		or a homogeneous Poisson point process of intensity $n / |A|$.
-		Denote the Boolean model by $Z(n,r)$.
+		and $\mathcal{P}_\lambda$ is a homogeneous Poisson point process
+		of intensity $\lambda$.
+		If $\lambda = n / |A|$ so $\E[ \# \mathcal{P}_\lambda ] = n$
+		(or if we replace $\mathcal{P}_\lambda$ with $n$ iid uniform points in $A$),
+		we obtain the \emph{Boolean model} denoted $Z(n,r)$.
 		We often choose $r = r_n$ by setting the parameter $\Lambda_n = n r_n^d$,
 		as it is $\Lambda_n$ that determines many of the properties of $Z(n,r_n)$.
 		%
@@ -120,9 +122,11 @@
 \block{Continuum percolation}{
 	Suppose $A = \R^d$ or $\H := (0,\infty) \times \R^{d-1}$,
 	fix $r = 1$
-	and let $\mathcal{P}$ be a homogeneous Poisson process of intensity $\lambda > 0$.
+	and let $\mathcal{P}^A_\lambda$ be a homogeneous Poisson process of intensity $\lambda > 0$.
 	%
-	In this case, the Boolean model is normally referred to as
+	In this case, the Boolean model
+	$Z^A_\lambda = \bigcup_{x \in \mathcal{P}_\lambda^A} B(x,1)$
+	is normally referred to as
 	\emph{continuum percolation}.
 	%
 	There are also many variants on continuum percolation,
@@ -134,7 +138,7 @@
 	continuum percolation has many behaviours similar to discrete percolation.
 	For example, we can define the \emph{percolation probability}
 	\[
-		\theta_A(\lambda) := \P_\lambda[\, 0 \text{ is in an unbounded component of $Z(n,r)$ }]
+		\theta_A(\lambda) := \P_\lambda[\, 0 \text{ is in an unbounded component of $Z^A_\lambda$ }]
 	\]
 	and there is a non-trivial \emph{critical intensity}
 	\[
@@ -153,6 +157,7 @@
 	with $\lambda = 0.35$, $\lambda = 0.36$ and $\lambda = 0.37$ respectively.
 	Each component is coloured according to its size (darker components are larger).
 	Numerical studies show $\lambda_c \approx 0.36$.
+	\vspace{-50pt}
 	\end{minipage}
 }
 
